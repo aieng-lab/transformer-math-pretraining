@@ -1,0 +1,6 @@
+.idea
+*.pyc
+venv
+train_data
+src/output
+output
