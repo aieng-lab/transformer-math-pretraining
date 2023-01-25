@@ -4,3 +4,10 @@ venv
 train_data
 src/output
 output
+out
+data
+!src/execution/data
+
+singularity-cli
+models/
+singularity_build_script.sh
