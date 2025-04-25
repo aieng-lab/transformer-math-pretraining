@@ -97,7 +97,7 @@ class Executor:
         print("-" * 40)
         print("Cuda version:")
         print(torch.version.cuda)
-        print("\nCuda availabe:")
+        print("\nCuda available:")
         print(torch.cuda.is_available())
         print("\nCuda device count:")
         print(torch.cuda.device_count())
