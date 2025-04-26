@@ -6,6 +6,7 @@ from transformers import BertTokenizerFast, AutoModelForMaskedLM, BertTokenizer
 import random
 
 from pretraining_methods.Objectives import Objectives
+from .math_words import math_words
 
 
 default_mlm_probability = 0.15
@@ -71,36 +72,6 @@ def mask_tokens(tokens, tokenizer: BertTokenizerFast, vocabulary: list, seq_len,
 
     return tokens, labels, label_positions
 
-math_words = {
-            'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Zero', 'factorial',
-            'First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh', 'Eighth', 'Ninth',
-            'Sum', 'Difference', 'Product', 'Quotient', 'Equation', 'Equality', 'Inequality', 'Union', 'Intersection',
-            'Intersect', 'Complement', 'negation', 'Implication', 'implies', 'Equivalence', 'equivalent', 'Plus',
-            'Minus', 'times', 'multiply', 'subtract', 'divide', 'add',
-            'equal', 'unequal', 'not', 'less', 'than', 'greater', 'or', 'and',
-            'Variable', 'Constant', 'Function', 'Graph', 'Line', 'Curve', 'Slope', 'Intersect', 'Linear',
-            'Parallel', 'Perpendicular', 'Angle', 'Triangle', 'Sides', 'Side', 'Square', 'Rectangle', 'Circle',
-            'Sphere', 'Cone', 'Cylinder', 'Polygon', 'Vertex', 'Edge', 'Area', 'Perimeter', 'Volume', 'Ratio',
-            'Proportion', 'Percentage', 'Decimal', 'Binary', 'Fraction', 'Prime', 'Composite',
-            'Factor', 'Multiple', 'Divisor', 'Dividend', 'Exponent', 'Base', 'Logarithm', 'Radical', 'Matrix',
-            'Determinant', 'Vector', 'Scalar', 'Transformation', 'Congruent', 'Similar', 'Congruence', 'Similarity',
-            'Right', 'domain', 'angle',
-            'Pythagorean', 'Theorem', 'Trigonometry', 'Calculus', 'Derivative', 'Integral', 'antiderivative', 'Limit', 'Differentiation',
-            'Integration', 'Differential', 'Cartesian', 'Coordinates', 'Polar', 'Asymptote', 'Quadratic', 'Cubic',
-            'Polynomial', 'Rational', 'Number', 'Irrational', 'Complex', 'Imaginary', 'Real', 'Natural', 'Whole',
-            'Absolute', 'Median', 'Mean', 'Range', 'Interval', 'half', 'open', 'closed',
-            'Standard', 'Deviation', 'Probability', 'Permutation', 'Combination', 'Statistical', 'Analysis',
-            'Correlation', 'Regression', 'Hypothesis', 'Null', 'Population', 'Data', 'Random', 'Expected', 'Standard',
-            'Error', 'Confidence', 'Variance', 'Distribution', 'Normal', 'Binomial', 'Poisson', 'Exponential',
-            'Joint', 'Conditional', 'Bayes', 'Law', 'large', 'Combinatorics', 'Game', 'Theory', 'Euclidean', 'Geometry',
-            'Discrete', 'Mathematics', 'Algebra', 'Set', 'Logic', 'Boolean', 'Proof', 'Axiom', 'Parity', 'Prime',
-            'Fermat', 'Fibonacci', 'Sequence', 'Golden', 'Algorithms', 'Graph', 'Tree', 'Network', 'Homomorphism',
-            'Isomorphism', 'Metric', 'Space', 'Continuous', 'Differentiable', 'integrable', 'Lipschitz', 'continuity',
-            'Banach', 'Hilbert', 'Fourier', 'Laplace', 'transform', 'Partial', 'arithmetic', 'previous', 'next',
-            'True', 'False', 'inverse', 'solutions', 'numerator', 'denominator',
-            'solution', 'contradiction', 'rank', 'dimension', 'transcendental', 'algebraic'}
-
-math_words = set(s.lower() for s in math_words)
 
 # from transformers.data.data_collator.DataCollatorForWholeWordMask
 def _whole_word_mask(input_tokens: List[str], tokenizer, max_predictions=512, mlm_probability=default_mlm_probability):
