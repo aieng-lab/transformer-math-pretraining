@@ -290,11 +290,7 @@ if __name__ == "__main__":
     torch.cuda.empty_cache()
     print("Loading model")
 
-    try:
-        state_dict = torch.load(model)
-    except FileNotFoundError as e:
-        model = model.replace('best', 'final')
-        state_dict = torch.load(model)
+    state_dict = torch.load(model)
 
     state_dict = {k.removeprefix('bert.'): v for k, v in state_dict.items() if not k.startswith('objectives')}
     model = create_model(tokenizer_name)
